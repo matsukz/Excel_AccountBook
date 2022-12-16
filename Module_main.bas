@@ -1,4 +1,3 @@
-Attribute VB_Name = "Module_main"
 Sub Enter()
 
     Dim UDCount As Long
@@ -9,11 +8,13 @@ Sub Enter()
     Dim Measn As String
     Dim Amount As Integer
     
-    NewDate = InputBox("“ú•t‚ğ“ü—Í", "V‹Kæˆø", "")
-    Client = InputBox("x•¥æ‚ğ“ü—Í", "V‹Kæˆø", "")
-    Contents = InputBox("“à—e‚ğ“ü—Í", "V‹Kæˆø", "")
-    Classification = InputBox("•ª—Ş‚ğ“ü—Í", "V‹Kæˆø", "")
-    Amount = InputBox("‹àŠz‚ğ“ü—Í", "V‹Kæˆø", "")
+    On Error GoTo Exception
+    
+    NewDate = InputBox("æ—¥ä»˜ã‚’å…¥åŠ›", "æ–°è¦å–å¼•", "")
+    Client = InputBox("æ”¯æ‰•å…ˆã‚’å…¥åŠ›", "æ–°è¦å–å¼•", "")
+    Contents = InputBox("å†…å®¹ã‚’å…¥åŠ›", "æ–°è¦å–å¼•", "")
+    Classification = InputBox("åˆ†é¡ã‚’å…¥åŠ›", "æ–°è¦å–å¼•", "")
+    Amount = InputBox("é‡‘é¡ã‚’å…¥åŠ›", "æ–°è¦å–å¼•", "")
     
     For UDCount = 1 To 100000 Step 1
     
@@ -28,10 +29,9 @@ Sub Enter()
             Cells(2 + UDCount, 7).Validation.Add _
                                   Type:=xlValidateList, _
                                   Formula1:= _
-                                  "è’i1,è’i2,è’i3"
+                                  "æ‰‹æ®µ1,æ‰‹æ®µ2,æ‰‹æ®µ3"
                                   
             Cells(2 + UDCount, 8) = Amount
-            
             
             Exit Sub
             
@@ -40,5 +40,8 @@ Sub Enter()
         End If
         
     Next UDCount
-    
+        
+Exception:
+        MsgBox "å‡¦ç†ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã—ãŸ", vbOKOnly + vbInformation, "ãŠçŸ¥ã‚‰ã›"
+        
 End Sub
