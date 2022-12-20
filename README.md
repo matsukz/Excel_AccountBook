@@ -12,18 +12,33 @@
 |金額|金額を入力|Amount|Long|
 
 日付フォームが空白または`mm/dd`の書式以外の場合は処理がキャンセルされます。半角数字でmmddは半角数字で入力してください。<br>
-他のフォームはテキストボックスが空白の場合処理、キャンセルされます。
+他のフォームはテキストボックスが空白の場合処理がキャンセルされます。
 
+### 記録する際に利用する変数
+|変数|意味|
+|:---:|:---:|
+|UDCounter|データ数をカウントし、新規データの位置を決定します|
+|CheckUDCounter|日付の空白をチェックします|
+
+## 転記
+転記ボタンを押すとマクロ`ReRecord`が実行されます。<br>
+`メインテーブル`にある最も下のデータを`決済手段`を基に各シートに再記録します。<br>
+利用する変数は[新規取引](#新規取引)と同じです。
+|変数|意味|
+|:---:|:---:|
+|InstUDCounter|再記録する位置を決定するのに利用します|
 
 # 参考
 FOM出版　よくわかるMicrosoft Excel 2019/2016/2013 マクロ/VBA 
 
 [EXCEL VBA ドロップダウンリスト・プルダウンリスト・コンボボックスの作成（リスト選択）](https://akira55.com/drop_down_list/)採録日：2022年12月16日
 
-[VBA 例外処理のサンプル(Excel/Access)](https://itsakura.com/excel-vba-exception)  再録日：2022年12月16日
+[VBA 例外処理のサンプル(Excel/Access)](https://itsakura.com/excel-vba-exception)  採録日：2022年12月16日
 
-[【マクロVBA】カウントをCOUNT・COUNTIF・COUNTIFSで求める！複数条件にも対応](https://dokugakuexcel.com/%E3%80%90%E3%83%9E%E3%82%AF%E3%83%ADvba%E7%9F%A5%E8%AD%98-20%E3%80%91%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92count-countif-countifs%E3%81%A7%E6%B1%82%E3%82%81%E3%82%8B/)  再録日：2022年12月16日
+[【マクロVBA】カウントをCOUNT・COUNTIF・COUNTIFSで求める！複数条件にも対応](https://dokugakuexcel.com/%E3%80%90%E3%83%9E%E3%82%AF%E3%83%ADvba%E7%9F%A5%E8%AD%98-20%E3%80%91%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92count-countif-countifs%E3%81%A7%E6%B1%82%E3%82%81%E3%82%8B/)  採録日：2022年12月16日
+
+[【VBA】テーブルの行数とデータ行数を取得する【.Rows.CountかFindを使う】](https://daitaideit.com/vba-table-get-last/) 採録日：2022年12月20日
 
 # おわりに
 作成：**Matsukz**<br>
-最終更新日：**2022年12月16日**
+最終更新日：**2022年12月20日**
