@@ -60,6 +60,11 @@ Sub ReRecord()
     Dim CheckUDCounter As Long
     Dim InstUDCounter As Long
     
+    Dim Confirm As VbMsgBoxResult
+    Dim Admission As String
+    Dim Leaving As String
+    
+    
     Worksheets("出費明細").Select
     
     UDCounter = Range("メインテーブル[#ALL]").Rows.Count
@@ -68,8 +73,6 @@ Sub ReRecord()
     Client = Cells(1 + UDCounter, 4)
     Classification = Cells(1 + UDCounter, 6)
     Amount = Cells(1 + UDCounter, 8)
-    
-    MsgBox UDCounter
     
     If Cells(UDCounter + 1, 7) = "現金" Then
         Worksheets("現金").Select
@@ -85,19 +88,27 @@ Sub ReRecord()
         
     ElseIf Cells(UDCounter + 1, 7) = "ICカード" Then
         Worksheets("ICカード").Select
-        For ExUDCount = 1 To 1000000
         
-            If Cells(3 + ExUDCount, 2) = "" Then
-                Cells(3 + ExUDCount, 2) = NewDate
-                Cells(3 + ExUDCount, 4) = "出金"
-                Cells(3 + ExUDCount, 6) = Amount
-                
-                Exit Sub
-            Else
+        InstUDCounter = Range("ICカードテーブル[#ALL]").Rows.Count
+        
+        Cells(2 + InstUDCounter, 2) = NewDate
+        Confirm = MsgBox("運賃支払ですか？", vbYesNo + vbDefaultButton2)
+        If Confirm = vbYes Then
+        
+            Cells(2 + InstUDCounter, 4) = "運賃支払"
             
-            End If
+            Admission = InputBox("入場駅を入力", ActiveSheet.Name, "")
+            Leaving = InputBox("出場駅を入力", ActiveSheet.Name, "")
             
-        Next ExUDCount
+            Cells(2 + InstUDCounter, 5) = Admission & "→" & Leaving
+            Cells(2 + InstUDCounter, 6) = Amount
+            
+        ElseIf Confirm = vbNo Then
+            Cells(2 + InstUDCounter, 4) = "物販"
+            Cells(2 + InstUDCounter, 5) = InputBox("内容を入力", ActiveSheet.Name, "")
+            Cells(2 + InstUDCounter, 6) = Amount
+            
+        End If
         
     ElseIf Cells(UDCounter + 1, 7) = "クレジットカード" Then
     
@@ -109,7 +120,7 @@ Sub ReRecord()
         Cells(3 + InstUDCounter, 4) = Client
         Cells(3 + InstUDCounter, 5) = InputBox(ActiveSheet.Name & "に記録する内容を入力", ActiveSheet.Name & "への記録", "")
         Cells(3 + InstUDCounter, 6) = Classification
-        Cells(3 + InstUDCounter, 9) = Amount
+        Cells(3 + InstUDCounter, 10) = Amount
             
     Else
         MsgBox "項目[決済手段]に不備が存在する可能性があります。", vbOKOnly + vbCritical, "ERROR"
